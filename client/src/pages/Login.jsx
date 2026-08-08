@@ -20,7 +20,7 @@ function Login({ onLoginSuccess }) {
 
   return (
     <div className="login-page">
-      <h2>Deploy Sandbox 서비스 로그인</h2>
+      <h2>Deploy Sandbox 로그인</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label>아이디</label>
