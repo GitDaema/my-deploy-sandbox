@@ -3,8 +3,8 @@
 CREATE DATABASE IF NOT EXISTS sandbox_db;
 USE sandbox_db;
 
--- Students table
-CREATE TABLE IF NOT EXISTS students (
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
   id VARCHAR(50) PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   password VARCHAR(255) NOT NULL,
@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS students (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Notices table
-CREATE TABLE IF NOT EXISTS notices (
+-- Posts table
+CREATE TABLE IF NOT EXISTS posts (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
@@ -21,31 +21,31 @@ CREATE TABLE IF NOT EXISTS notices (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Courses table
-CREATE TABLE IF NOT EXISTS courses (
+-- Items table
+CREATE TABLE IF NOT EXISTS items (
   id VARCHAR(50) PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   professor VARCHAR(100),
   credits INT NOT NULL
 );
 
--- Registrations / Student-Course relation table
-CREATE TABLE IF NOT EXISTS student_courses (
+-- User-Item relation table
+CREATE TABLE IF NOT EXISTS user_items (
   student_id VARCHAR(50),
   course_id VARCHAR(50),
   PRIMARY KEY (student_id, course_id),
-  FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-  FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+  FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES items(id) ON DELETE CASCADE
 );
 
--- Grades table
-CREATE TABLE IF NOT EXISTS grades (
+-- Records table
+CREATE TABLE IF NOT EXISTS records (
   id INT AUTO_INCREMENT PRIMARY KEY,
   student_id VARCHAR(50),
   course_id VARCHAR(50),
-  grade VARCHAR(10) NOT NULL, -- e.g., A+, B0, Pass
+  grade VARCHAR(10) NOT NULL,
   score DECIMAL(3, 2),
-  semester VARCHAR(20), -- e.g., 2026-1
-  FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-  FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+  semester VARCHAR(20),
+  FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES items(id) ON DELETE CASCADE
 );

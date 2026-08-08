@@ -2,12 +2,12 @@
 
 ```mermaid
 erDiagram
-    students ||--o{ student_courses : registers
-    courses ||--o{ student_courses : teaches
-    students ||--o{ grades : receives
-    courses ||--o{ grades : evaluates
+    users ||--o{ user_items : registers
+    items ||--o{ user_items : teaches
+    users ||--o{ records : receives
+    items ||--o{ records : evaluates
     
-    students {
+    users {
         string id PK
         string name
         string password
@@ -15,7 +15,7 @@ erDiagram
         timestamp created_at
     }
 
-    notices {
+    posts {
         int id PK
         string title
         string content
@@ -23,19 +23,19 @@ erDiagram
         timestamp created_at
     }
 
-    courses {
+    items {
         string id PK
         string name
         string professor
         int credits
     }
 
-    student_courses {
+    user_items {
         string student_id PK, FK
         string course_id PK, FK
     }
 
-    grades {
+    records {
         int id PK
         string student_id FK
         string course_id FK

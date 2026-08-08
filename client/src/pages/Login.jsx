@@ -20,10 +20,10 @@ function Login({ onLoginSuccess }) {
 
   return (
     <div className="login-page">
-      <h2>원광대학교 웹정보서비스 로그인</h2>
+      <h2>Deploy Sandbox 서비스 로그인</h2>
       <form onSubmit={handleLogin}>
         <div>
-          <label>학번</label>
+          <label>아이디</label>
           <input
             type="text"
             value={studentId}

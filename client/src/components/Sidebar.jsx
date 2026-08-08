@@ -13,11 +13,11 @@ function Sidebar({ user, onLogout }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h3>원광대학교 AI 챗</h3>
+        <h3>Deploy Sandbox AI</h3>
       </div>
       <div className="user-profile">
         <p>{user?.name || '사용자'} 님</p>
-        <p>학번: {user?.studentId || 'N/A'}</p>
+        <p>ID: {user?.studentId || 'N/A'}</p>
       </div>
       <div className="sidebar-menu">
         {/* Navigation / Chat history items will go here */}
